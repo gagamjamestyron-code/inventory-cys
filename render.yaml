@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: inventory-cys
+    runtime: docker
+    region: singapore
+    plan: free
