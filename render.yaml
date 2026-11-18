@@ -4,3 +4,6 @@ services:
     runtime: docker
     region: singapore
     plan: free
+    envVars:
+      - key: DATABASE_URL
+        sync: false
