@@ -30,6 +30,13 @@ $totalItems = count($allItems);
 $lowStockCount = count(array_filter($allItems, fn($item) => isLowStock($item['quantity'], $item['restock_level'])));
 $categoriesCount = count(array_unique(array_column($allItems, 'category')));
 
+// Show the popup only at 4+ low-stock items, once per alert cycle until dismissed.
+// Reset the dismissal when inventory falls below the popup threshold so a later alert can show.
+if ($lowStockCount < 4) {
+    unset($_SESSION['low_stock_alert_dismissed']);
+}
+$showLowStockAlert = $lowStockCount >= 4 && empty($_SESSION['low_stock_alert_dismissed']);
+
 $search = trim($_GET['search'] ?? '');
 $categoryFilter = trim($_GET['category'] ?? '');
 $items = array_values(array_filter($allItems, function ($item) use ($search, $categoryFilter) {
@@ -42,7 +49,6 @@ $items = array_slice($items, 0, 5);
 
 $history = $pdo->query('SELECT * FROM history ORDER BY timestamp DESC LIMIT 3')->fetchAll();
 $groceries = $pdo->query('SELECT * FROM grocery_list ORDER BY id DESC')->fetchAll();
-$showLowStockAlert = $lowStockCount > 0 && empty($_SESSION['low_stock_alert_dismissed']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,7 +56,7 @@ $showLowStockAlert = $lowStockCount > 0 && empty($_SESSION['low_stock_alert_dism
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MyInventory - Dashboard</title>
-    <link rel="stylesheet" href="css/style.css?v=4">
+    <link rel="stylesheet" href="css/style.css?v=5">
 </head>
 <body>
 <div class="app-shell">
@@ -74,7 +80,7 @@ $showLowStockAlert = $lowStockCount > 0 && empty($_SESSION['low_stock_alert_dism
             <div class="stat-card"><div class="stat-icon blue">📦</div><div class="stat-info"><h3>Total Items</h3><div class="value"><?= $totalItems ?></div></div></div>
             <div class="stat-card"><div class="stat-icon red">⚠️</div><div class="stat-info"><h3>Low Stock</h3><div class="value low-value"><?= $lowStockCount ?></div></div></div>
             <div class="stat-card"><div class="stat-icon green">🛒</div><div class="stat-info"><h3>Categories</h3><div class="value success-value"><?= $categoriesCount ?></div></div></div>
-            <div class="alert-banner <?= $lowStockCount === 0 ? 'normal-alert' : '' ?>">
+            <div class="alert-banner <?= $lowStockCount === 0 ? 'normal-alert' : 'low-alert-banner' ?>">
                 <div><h4><?= $lowStockCount ? '⚠️ Low Stock Alert' : '✅ Stock Status Normal' ?></h4><p><?= $lowStockCount ? $lowStockCount . ' item' . ($lowStockCount === 1 ? ' is' : 's are') . ' running low!' : 'All items have sufficient stock.' ?></p></div>
                 <a href="my_items.php<?= $lowStockCount ? '?low_stock=1' : '' ?>" class="btn-alert">View Items →</a>
             </div>
