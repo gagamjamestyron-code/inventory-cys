@@ -1,10 +1,9 @@
 <?php
 require_once 'includes/db.php';
-$id = $_GET['id'] ?? 0;
-if ($id) {
-    $stmt = $pdo->prepare("DELETE FROM history WHERE id = ?");
-    $stmt->execute([$id]);
+$id = (int) ($_POST['id'] ?? 0);
+if ($id > 0) {
+    $stmt = $pdo->prepare('DELETE FROM history WHERE id = :id');
+    $stmt->execute([':id' => $id]);
 }
-header("Location: my_history.php");
-exit();
-?>
+header('Location: my_history.php');
+exit;

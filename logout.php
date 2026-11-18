@@ -2,16 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Logged Out - MyInventory</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=3">
 </head>
 <body>
-    <div class="main-content" style="margin-left: 0; width: 100%; display: flex; justify-content: center; align-items: center; height: 100vh; text-align: center;">
-        <div class="section-box" style="padding: 40px; max-width: 400px;">
-            <h2>🚪 Logged Out Successfully</h2>
-            <p style="color: var(--text-muted); margin-bottom: 25px;">You have safely exited the inventory system.</p>
-            <a href="my_dashboard.php" class="btn-action" style="padding: 10px 20px; text-decoration: none; display: inline-block;">Return to Dashboard</a>
-        </div>
-    </div>
+<main class="logout-page"><div class="section-box logout-card"><h2>🚪 Logged Out Successfully</h2><p>You have safely exited the inventory system.</p><a href="my_dashboard.php" class="btn-action">Return to Dashboard</a></div></main>
 </body>
 </html>
