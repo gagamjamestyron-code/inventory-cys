@@ -1,0 +1,14 @@
+/* Consistent group-project branding across all application sidebars. */
+.logo-area {
+    font-size: 0;
+}
+.logo-area::before {
+    content: "🛒 IMS";
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+.logo-area .logo-sub {
+    font-size: 10px;
+}
