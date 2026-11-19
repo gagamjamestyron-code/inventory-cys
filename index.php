@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#0b1329">
-    <title>Welcome - MyInventory</title>
-    <link rel="stylesheet" href="css/style.css?v=5">
-    <link rel="stylesheet" href="css/landing.css?v=1">
+    <title>Welcome - Inventory Management System</title>
+    <link rel="stylesheet" href="css/style.css?v=6">
+    <link rel="stylesheet" href="css/landing.css?v=2">
 </head>
 <body class="landing-page">
     <main class="landing-container">
         <header class="landing-nav">
-            <a class="landing-brand" href="index.php" aria-label="MyInventory home">
+            <a class="landing-brand" href="index.php" aria-label="Inventory Management System home">
                 <span class="landing-brand-icon">🛒</span>
-                <span>MyInventory</span>
+                <span>Inventory Management System</span>
             </a>
             <span class="landing-tagline">Track • Manage • Restock</span>
         </header>
@@ -21,7 +21,7 @@
         <section class="landing-hero">
             <div class="landing-copy">
                 <span class="landing-eyebrow">YOUR INVENTORY, SIMPLIFIED</span>
-                <h1>Welcome to <span>MyInventory</span></h1>
+                <h1>Welcome to <span>Inventory Management System</span></h1>
                 <p class="landing-description">Keep track of your items, stay ahead of low stock, and organize your grocery list—all in one place.</p>
                 <a class="landing-continue" href="my_dashboard.php">Continue to your inventory <span aria-hidden="true">→</span></a>
                 <p class="landing-note">A simple space to keep your stock in order.</p>
@@ -42,7 +42,7 @@
             </div>
         </section>
 
-        <footer class="landing-footer">MyInventory <span>•</span> Track your stock with confidence</footer>
+        <footer class="landing-footer">Inventory Management System <span>•</span> Track your stock with confidence</footer>
     </main>
 </body>
 </html>
